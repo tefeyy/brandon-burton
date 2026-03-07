@@ -1,0 +1,387 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const services = [
+  {
+    title: 'Web Design & Build',
+    desc: 'A site that looks the part and actually converts. Built clean, fast, and fully yours.',
+    from: 'From £1,200',
+    color: '#1a1a1a',
+  },
+  {
+    title: 'Digital Setup',
+    desc: 'Google Business, email, analytics, booking tools — everything configured and connected.',
+    from: 'From £350',
+    color: '#1e2a4a',
+  },
+  {
+    title: 'Ongoing Care',
+    desc: 'Monthly support so your site stays sharp, secure, and up to date. No more chasing freelancers.',
+    from: 'From £120/mo',
+    color: '#1a2e1e',
+  },
+  {
+    title: 'Strategy Session',
+    desc: 'A focused 60-minute call to cut through the noise and figure out your best next step.',
+    from: '£150 flat',
+    color: '#2a1f14',
+  },
+];
+
+const builtFor = [
+  { label: 'Local businesses', icon: '🏪' },
+  { label: 'Beauty & hospitality', icon: '✂️' },
+  { label: 'Personal brands', icon: '👤' },
+  { label: 'New ventures', icon: '🚀' },
+];
+---
+
+<BaseLayout>
+  <Nav />
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-inner">
+          <p class="hero-eyebrow">Web Design & Digital Strategy</p>
+          <h1 class="hero-headline">
+            Your business deserves a website<br />
+            <em>that actually works.</em>
+          </h1>
+          <p class="hero-sub">
+            I'm Brandon Burton — I design and build clean, fast websites for small businesses,
+            and stick around to make sure they stay that way.
+          </p>
+          <div class="hero-actions">
+            <a href="/contact" class="btn-primary">Start a project</a>
+            <a href="/work" class="btn-ghost">See my work →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES PREVIEW -->
+    <section class="services-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">What I do</h2>
+          <a href="/services" class="section-link">View all services →</a>
+        </div>
+        <div class="services-grid">
+          {services.map(s => (
+            <div class="service-card" style={`--hover-bg: ${s.color}`}>
+              <div class="card-inner">
+                <h3 class="card-title">{s.title}</h3>
+                <p class="card-desc">{s.desc}</p>
+                <span class="card-from">{s.from}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- BUILT FOR -->
+    <section class="built-for">
+      <div class="container">
+        <p class="built-label">Built for</p>
+        <div class="built-grid">
+          {builtFor.map(item => (
+            <div class="built-card">
+              <span class="built-icon">{item.icon}</span>
+              <span class="built-text">{item.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK PREVIEW -->
+    <section class="work-preview">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Recent work</h2>
+          <a href="/work" class="section-link">All projects →</a>
+        </div>
+        <div class="case-card">
+          <div class="case-info">
+            <span class="case-tag">Case study</span>
+            <h3 class="case-title">TheFaceLab</h3>
+            <p class="case-desc">
+              Two-salon beauty brand in Oxfordshire. Full digital setup, website build,
+              and ongoing monthly care to keep them growing online.
+            </p>
+            <a href="/work/thefacelab" class="btn-ghost">Read case study →</a>
+          </div>
+          <div class="case-visual">
+            <div class="case-placeholder">TFL</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA STRIP -->
+    <section class="cta-strip">
+      <div class="container">
+        <div class="cta-inner">
+          <h2 class="cta-title">Ready to get started?</h2>
+          <p class="cta-sub">Let's talk about what your business needs. No pressure, no jargon.</p>
+          <a href="/contact" class="btn-primary">Book a free call</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+<style>
+  /* ── HERO ── */
+  .hero {
+    padding: calc(68px + 6rem) 0 6rem;
+  }
+  .hero-inner {
+    max-width: 700px;
+  }
+  .hero-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 1.5rem;
+  }
+  .hero-headline {
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .hero-headline em {
+    font-style: normal;
+    color: var(--mid);
+  }
+  .hero-sub {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--mid);
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* ── BUTTONS ── */
+  .btn-primary {
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 0.75rem 1.6rem;
+    border-radius: 100px;
+    transition: opacity 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { opacity: 0.75; }
+  .btn-ghost {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--mid);
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--ink); }
+
+  /* ── SECTION SHARED ── */
+  .services-section,
+  .built-for,
+  .work-preview,
+  .cta-strip {
+    padding: var(--section-gap) 0 0;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1rem;
+  }
+  .section-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+  .section-link {
+    font-size: 0.85rem;
+    color: var(--mid);
+    transition: color 0.2s;
+  }
+  .section-link:hover { color: var(--ink); }
+
+  /* ── SERVICES GRID ── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .service-card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 2rem;
+    transition: background 0.25s ease, border-color 0.25s, color 0.25s;
+    cursor: default;
+  }
+  .service-card:hover {
+    background: var(--hover-bg);
+    border-color: transparent;
+    color: #fff;
+  }
+  .service-card:hover .card-desc,
+  .service-card:hover .card-from {
+    color: rgba(255,255,255,0.65);
+  }
+  .card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: var(--ink);
+    transition: color 0.25s;
+  }
+  .service-card:hover .card-title { color: #fff; }
+  .card-desc {
+    font-size: 0.875rem;
+    color: var(--mid);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    transition: color 0.25s;
+  }
+  .card-from {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--mid);
+    letter-spacing: 0.02em;
+    transition: color 0.25s;
+  }
+
+  /* ── BUILT FOR ── */
+  .built-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 1.25rem;
+  }
+  .built-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .built-card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .built-icon { font-size: 1.5rem; }
+  .built-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  /* ── WORK PREVIEW ── */
+  .case-card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .case-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mid);
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+  .case-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+  .case-desc {
+    font-size: 0.9rem;
+    color: var(--mid);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .case-visual {
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .case-placeholder {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--rule);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── CTA STRIP ── */
+  .cta-inner {
+    background: var(--ink);
+    color: var(--bg);
+    border-radius: var(--radius);
+    padding: 4rem 3rem;
+    text-align: center;
+  }
+  .cta-title {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+  .cta-sub {
+    font-size: 0.95rem;
+    opacity: 0.65;
+    margin-bottom: 2rem;
+  }
+  .cta-inner .btn-primary {
+    background: var(--bg);
+    color: var(--ink);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .built-grid { grid-template-columns: repeat(2, 1fr); }
+    .case-card { grid-template-columns: 1fr; padding: 2rem; }
+    .case-visual { display: none; }
+    .cta-inner { padding: 2.5rem 1.5rem; }
+  }
+</style>

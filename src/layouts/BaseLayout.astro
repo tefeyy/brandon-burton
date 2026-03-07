@@ -1,0 +1,47 @@
+---
+const { 
+  title = 'Brandon Burton — Web Design & Digital Strategy',
+  description = 'I design and build clean, fast websites for small businesses, and stick around to make sure they stay that way.',
+  ogImage = '/og-image.jpg'
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:type" content="website" />
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles/global.css" />
+</head>
+<body>
+  <slot />
+  <script is:inline>
+    // Apply saved theme immediately to prevent flash
+    const saved = localStorage.getItem('bb-theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+    // Toggle handler (attached after DOM ready)
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.querySelector('.theme-toggle');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const current = document.documentElement.getAttribute('data-theme');
+          const next = current === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          localStorage.setItem('bb-theme', next);
+          const icon = toggle.querySelector('.toggle-icon');
+          if (icon) icon.textContent = next === 'dark' ? '☀️' : '🌙';
+        });
+      }
+    });
+  </script>
+</body>
+</html>

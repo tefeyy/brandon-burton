@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout title="TheFaceLab — Brandon Burton">
+  <Nav />
+  <main>
+    <section class="case-hero">
+      <div class="container">
+        <a href="/work" class="back-link">← All work</a>
+        <p class="eyebrow">Case Study</p>
+        <h1 class="case-title">TheFaceLab</h1>
+        <p class="case-tagline">Two-salon beauty brand in Oxfordshire — digital setup, website, and ongoing monthly care.</p>
+        <div class="case-meta">
+          <div class="meta-item"><span class="meta-label">Client</span><span class="meta-value">Paige, TheFaceLab</span></div>
+          <div class="meta-item"><span class="meta-label">Services</span><span class="meta-value">Web Design · Digital Setup · Ongoing Care</span></div>
+          <div class="meta-item"><span class="meta-label">Locations</span><span class="meta-value">Witney & Cotswold</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-body">
+      <div class="container">
+        <div class="case-placeholder-img">Website screenshot coming soon</div>
+
+        <div class="case-content">
+          <h2>The brief</h2>
+          <p>TheFaceLab is a growing beauty salon brand with two locations in Oxfordshire. Paige needed a professional digital presence that reflected the quality of her treatments — and a reliable partner to keep it all running smoothly.</p>
+
+          <h2>What I did</h2>
+          <p>Starting with a full digital setup — Google Business Profile, email, and analytics — I then designed and built a clean, fast website for the Cotswold salon. The site is now maintained on a monthly care plan, covering updates, security, and ongoing improvements.</p>
+
+          <h2>The result</h2>
+          <p>A professional online presence that matches the salon's standard of service — and a client who no longer has to think about their website.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .case-hero {
+    padding: calc(68px + 5rem) 0 4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .back-link {
+    font-size: 0.85rem;
+    color: var(--mid);
+    display: inline-block;
+    margin-bottom: 2rem;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--ink); }
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 0.75rem;
+  }
+  .case-title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+  .case-tagline { font-size: 1rem; color: var(--mid); max-width: 560px; line-height: 1.7; margin-bottom: 2.5rem; }
+  .case-meta { display: flex; gap: 3rem; flex-wrap: wrap; }
+  .meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+  .meta-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); }
+  .meta-value { font-size: 0.875rem; font-weight: 500; color: var(--ink); }
+  .case-body { padding: var(--section-gap) 0 0; }
+  .case-placeholder-img {
+    background: var(--surface2);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    color: var(--soft);
+    margin-bottom: 4rem;
+  }
+  .case-content { max-width: 640px; }
+  .case-content h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+    margin-top: 2.5rem;
+  }
+  .case-content h2:first-child { margin-top: 0; }
+  .case-content p { font-size: 0.95rem; color: var(--mid); line-height: 1.8; }
+</style>

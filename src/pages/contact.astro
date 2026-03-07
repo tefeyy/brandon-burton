@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Contact — Brandon Burton">
+  <Nav />
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Contact</p>
+        <h1 class="page-title">Let's talk</h1>
+        <p class="page-sub">Tell me a bit about your project and I'll get back to you within one working day.</p>
+      </div>
+    </section>
+    <section class="contact-body">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-form-wrap">
+            <form name="contact" method="POST" data-netlify="true" action="/thank-you" class="contact-form">
+              <input type="hidden" name="form-name" value="contact" />
+              <div class="field">
+                <label for="name">Your name</label>
+                <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+              </div>
+              <div class="field">
+                <label for="email">Email address</label>
+                <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+              </div>
+              <div class="field">
+                <label for="business">Business name (optional)</label>
+                <input type="text" id="business" name="business" placeholder="My Business Ltd" />
+              </div>
+              <div class="field">
+                <label for="message">What are you working on?</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell me about your project, what you need, and any timeline..." required></textarea>
+              </div>
+              <button type="submit" class="btn-submit">Send message →</button>
+            </form>
+          </div>
+          <div class="contact-info">
+            <div class="info-card">
+              <h3>Email</h3>
+              <a href="mailto:hello@brandonburton.co.uk">hello@brandonburton.co.uk</a>
+            </div>
+            <div class="info-card">
+              <h3>Prefer to book a call?</h3>
+              <p>Use the link below to pick a time that works for you — no obligation.</p>
+              <a href="https://calendly.com/brandonburton" target="_blank" class="btn-outline">Book a free 30-min call →</a>
+            </div>
+            <div class="info-card">
+              <h3>Based in</h3>
+              <p>Witney, Oxfordshire<br />Available for local & UK-wide projects</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: calc(68px + 5rem) 0 4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 1rem;
+  }
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.75rem;
+    color: var(--ink);
+  }
+  .page-sub { font-size: 1rem; color: var(--mid); line-height: 1.7; max-width: 480px; }
+  .contact-body { padding: var(--section-gap) 0 0; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+  .field { display: flex; flex-direction: column; gap: 0.4rem; }
+  label { font-size: 0.8rem; font-weight: 600; color: var(--ink); letter-spacing: 0.02em; }
+  input, textarea {
+    font-family: var(--font);
+    font-size: 0.9rem;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1.5px solid var(--rule);
+    border-radius: var(--radius-sm);
+    padding: 0.7rem 0.9rem;
+    transition: border-color 0.2s;
+    resize: vertical;
+    outline: none;
+  }
+  input::placeholder, textarea::placeholder { color: var(--soft); }
+  input:focus, textarea:focus { border-color: var(--ink); }
+  .btn-submit {
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 0.8rem 1.6rem;
+    border-radius: 100px;
+    align-self: flex-start;
+    transition: opacity 0.2s;
+  }
+  .btn-submit:hover { opacity: 0.75; }
+  .info-card {
+    padding: 1.5rem;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    margin-bottom: 1rem;
+  }
+  .info-card h3 { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); margin-bottom: 0.5rem; }
+  .info-card a:not(.btn-outline) { font-size: 0.875rem; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .info-card p { font-size: 0.875rem; color: var(--mid); line-height: 1.6; margin-bottom: 1rem; }
+  .btn-outline {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    padding: 0.5rem 1rem;
+    border-radius: 100px;
+    display: inline-block;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { background: var(--ink); color: var(--bg); }
+  @media (max-width: 768px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+</style>

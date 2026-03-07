@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="About — Brandon Burton">
+  <Nav />
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">About</p>
+        <h1 class="page-title">The person behind the work</h1>
+      </div>
+    </section>
+    <section class="about-body">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-content">
+            <p class="about-lead">I'm Brandon Burton — a web designer and digital consultant based in Witney, Oxfordshire.</p>
+            <p>I work with small businesses who want a professional online presence without the agency overhead. That means a clean, fast website that reflects what you actually do — and a reliable person to keep it running.</p>
+            <p>I handle everything myself: design, build, setup, and ongoing support. No handoffs, no confusion about who to call. You work with me directly, start to finish.</p>
+            <p>Most of my clients are local businesses — salons, hospitality, personal brands — who need someone they can trust to just sort it. If that sounds like you, <a href="/contact">let's talk</a>.</p>
+          </div>
+          <div class="about-sidebar">
+            <div class="sidebar-card">
+              <h3>Based in</h3>
+              <p>Witney, Oxfordshire</p>
+            </div>
+            <div class="sidebar-card">
+              <h3>Available for</h3>
+              <p>Local & UK-based businesses</p>
+            </div>
+            <div class="sidebar-card">
+              <h3>Typically works with</h3>
+              <p>Small businesses, salons, hospitality, personal brands</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: calc(68px + 5rem) 0 4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 1rem;
+  }
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+  .about-body { padding: var(--section-gap) 0 0; }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-content { display: flex; flex-direction: column; gap: 1.25rem; }
+  .about-lead {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  .about-content p {
+    font-size: 0.95rem;
+    color: var(--mid);
+    line-height: 1.8;
+  }
+  .about-content a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .sidebar-card {
+    padding: 1.25rem;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.75rem;
+  }
+  .sidebar-card h3 { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); margin-bottom: 0.4rem; }
+  .sidebar-card p { font-size: 0.875rem; color: var(--mid); }
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+</style>

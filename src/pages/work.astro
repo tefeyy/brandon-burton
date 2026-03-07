@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Work — Brandon Burton">
+  <Nav />
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Work</p>
+        <h1 class="page-title">Projects & case studies</h1>
+        <p class="page-sub">A selection of websites and digital setups I've built for small businesses.</p>
+      </div>
+    </section>
+    <section class="work-grid-section">
+      <div class="container">
+        <a href="/work/thefacelab" class="work-item">
+          <div class="work-thumb">
+            <span>TFL</span>
+          </div>
+          <div class="work-meta">
+            <h2 class="work-title">TheFaceLab</h2>
+            <p class="work-desc">Two-salon beauty brand in Oxfordshire. Digital setup, website build, and ongoing monthly care.</p>
+            <span class="work-tags">Web Design · Digital Setup · Ongoing Care</span>
+          </div>
+          <span class="work-arrow">→</span>
+        </a>
+        <div class="work-coming-soon">
+          <p>More case studies coming soon.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: calc(68px + 5rem) 0 4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 1rem;
+  }
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+  .page-sub { font-size: 1rem; color: var(--mid); line-height: 1.7; max-width: 520px; }
+  .work-grid-section { padding: var(--section-gap) 0 0; }
+  .work-item {
+    display: grid;
+    grid-template-columns: 280px 1fr auto;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.2s;
+  }
+  .work-item:hover { background: var(--surface2); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; border-radius: var(--radius); }
+  .work-thumb {
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--rule);
+    letter-spacing: 0.1em;
+    border: 1px solid var(--rule);
+  }
+  .work-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+  .work-desc { font-size: 0.875rem; color: var(--mid); line-height: 1.6; margin-bottom: 0.75rem; }
+  .work-tags { font-size: 0.75rem; color: var(--soft); letter-spacing: 0.03em; }
+  .work-arrow { font-size: 1.2rem; color: var(--mid); }
+  .work-coming-soon {
+    padding: 3rem 0;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--soft);
+  }
+  @media (max-width: 768px) {
+    .work-item { grid-template-columns: 1fr; gap: 1.25rem; }
+    .work-arrow { display: none; }
+  }
+</style>
