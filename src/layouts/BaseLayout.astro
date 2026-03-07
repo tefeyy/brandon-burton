@@ -25,21 +25,28 @@ const {
 <body>
   <slot />
   <script is:inline>
-    const saved = localStorage.getItem('bb-theme');
-    if (saved) document.documentElement.setAttribute('data-theme', saved);
+    // Apply saved theme immediately (prevents flash on load)
+    const saved = localStorage.getItem('bb-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved);
 
+    // Sync icon to current theme once DOM is ready
     document.addEventListener('DOMContentLoaded', () => {
       const toggle = document.querySelector('.theme-toggle');
-      if (toggle) {
-        toggle.addEventListener('click', () => {
-          const current = document.documentElement.getAttribute('data-theme');
-          const next = current === 'dark' ? 'light' : 'dark';
-          document.documentElement.setAttribute('data-theme', next);
-          localStorage.setItem('bb-theme', next);
-          const icon = toggle.querySelector('.toggle-icon');
-          if (icon) icon.textContent = next === 'dark' ? '☀️' : '🌙';
-        });
+      const icon = toggle?.querySelector('.toggle-icon');
+
+      // Set icon to match the current theme on every page load
+      if (icon) {
+        icon.textContent = saved === 'dark' ? '☀️' : '🌙';
       }
+
+      // Handle toggle clicks
+      toggle?.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('bb-theme', next);
+        if (icon) icon.textContent = next === 'dark' ? '☀️' : '🌙';
+      });
     });
   </script>
 </body>
