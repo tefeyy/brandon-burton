@@ -8,7 +8,7 @@ const {
 } = Astro.props;
 ---
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,28 +21,23 @@ const {
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+  <!-- Theme must be applied in <head> before any paint to prevent flash -->
+  <script is:inline>
+    const saved = localStorage.getItem('bb-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved);
+  </script>
 </head>
 <body>
   <slot />
   <script is:inline>
-    // Apply saved theme immediately (prevents flash on load)
-    const saved = localStorage.getItem('bb-theme') || 'light';
-    document.documentElement.setAttribute('data-theme', saved);
-
-    // Sync icon to current theme once DOM is ready
+    // Sync toggle icon and wire up click handler after DOM is ready
     document.addEventListener('DOMContentLoaded', () => {
       const toggle = document.querySelector('.theme-toggle');
       const icon = toggle?.querySelector('.toggle-icon');
-
-      // Set icon to match the current theme on every page load
-      if (icon) {
-        icon.textContent = saved === 'dark' ? '☀️' : '🌙';
-      }
-
-      // Handle toggle clicks
+      const current = document.documentElement.getAttribute('data-theme');
+      if (icon) icon.textContent = current === 'dark' ? '☀️' : '🌙';
       toggle?.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
+        const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);
         localStorage.setItem('bb-theme', next);
         if (icon) icon.textContent = next === 'dark' ? '☀️' : '🌙';
