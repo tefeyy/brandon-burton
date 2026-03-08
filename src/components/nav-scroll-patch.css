@@ -1,0 +1,11 @@
+  /* Nav scrolled state */
+  .site-nav.scrolled {
+    background: color-mix(in srgb, var(--bg) 95%, transparent);
+    box-shadow: 0 1px 0 var(--rule), 0 4px 24px rgba(0,0,0,0.05);
+  }
+  .site-nav.scrolled .nav-inner {
+    height: 56px;
+  }
+  .nav-inner {
+    transition: height 0.3s ease;
+  }

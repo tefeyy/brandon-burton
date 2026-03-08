@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brandon Burton — Prototype A: Editorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #0a0a0a;
+  --paper: #f2efe8;
+  --accent: #c8392b;
+  --mid: #666;
+  --rule: #d4cfc5;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; cursor: none; }
+
+.cursor { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.1s; }
+.cursor-ring { width: 36px; height: 36px; border: 1.5px solid var(--ink); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: left 0.12s ease, top 0.12s ease, width 0.25s, height 0.25s, border-color 0.25s; }
+.cursor-ring.hovered { width: 56px; height: 56px; border-color: var(--accent); }
+
+body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9000; opacity: 0.35; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; }
+.nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.08em; color: var(--ink); text-decoration: none; }
+.nav-links { display: flex; gap: 2.5rem; }
+.nav-links a { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--ink); }
+.nav-cta { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; background: var(--ink); color: var(--paper); padding: 0.6rem 1.4rem; text-decoration: none; transition: background 0.2s; }
+.nav-cta:hover { background: var(--accent); }
+
+.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+.hero-left { display: flex; flex-direction: column; justify-content: flex-end; padding: 8rem 3rem 5rem; border-right: 1px solid var(--rule); }
+.hero-issue { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; }
+.hero-issue::before { content: ''; display: block; width: 40px; height: 1px; background: var(--accent); }
+.hero-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(5rem, 9vw, 8.5rem); line-height: 0.9; color: var(--ink); margin-bottom: 3rem; }
+.hero-headline em { font-family: 'Playfair Display', serif; font-style: italic; color: var(--accent); font-size: 0.85em; display: block; }
+.hero-sub { font-size: 0.9rem; line-height: 1.8; color: var(--mid); max-width: 380px; border-left: 2px solid var(--accent); padding-left: 1.25rem; margin-bottom: 3rem; }
+.hero-actions { display: flex; gap: 1.5rem; align-items: center; }
+.btn-primary { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.1em; background: var(--accent); color: #fff; padding: 0.9rem 2rem; text-decoration: none; transition: opacity 0.2s; }
+.btn-primary:hover { opacity: 0.8; }
+.btn-ghost { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+.btn-ghost:hover { color: var(--ink); }
+
+.hero-right { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 8rem 3rem 5rem; position: relative; overflow: hidden; }
+.hero-bb { font-family: 'Bebas Neue', sans-serif; font-size: clamp(14rem, 24vw, 22rem); line-height: 1; color: transparent; -webkit-text-stroke: 1.5px var(--rule); letter-spacing: -0.05em; position: absolute; bottom: -3rem; right: -2rem; pointer-events: none; animation: float 8s ease-in-out infinite; }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-24px); } }
+.hero-stats { display: flex; flex-direction: column; gap: 1.5rem; position: relative; z-index: 2; }
+.stat { padding: 1.75rem 2.5rem; border: 1px solid var(--rule); background: rgba(242,239,232,0.92); backdrop-filter: blur(8px); text-align: center; min-width: 220px; }
+.stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; line-height: 1; color: var(--ink); display: block; }
+.stat-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); margin-top: 0.3rem; display: block; }
+
+.marquee-wrap { background: var(--ink); color: var(--paper); padding: 1rem 0; overflow: hidden; white-space: nowrap; }
+.marquee-track { display: inline-block; animation: marquee 22s linear infinite; }
+.marquee-track span { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.1em; padding: 0 2rem; }
+.marquee-track .dot { color: var(--accent); }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+.services { padding: 7rem 3rem; border-top: 1px solid var(--rule); }
+.section-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 4rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--rule); }
+.section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+.services-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--rule); }
+.service-card { padding: 2.5rem 1.75rem; border-right: 1px solid var(--rule); position: relative; overflow: hidden; transition: background 0.3s, color 0.3s; cursor: default; }
+.service-card:last-child { border-right: none; }
+.service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease; }
+.service-card:hover { background: var(--ink); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-num { font-family: 'Bebas Neue', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; color: var(--rule); display: block; margin-bottom: 1.5rem; transition: color 0.3s; }
+.service-card:hover .service-num { color: var(--accent); }
+.service-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.03em; color: var(--ink); line-height: 1.1; margin-bottom: 1rem; transition: color 0.3s; }
+.service-card:hover .service-name { color: var(--paper); }
+.service-desc { font-size: 0.78rem; line-height: 1.75; color: var(--mid); margin-bottom: 2rem; transition: color 0.3s; }
+.service-card:hover .service-desc { color: rgba(242,239,232,0.55); }
+.service-price { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); transition: color 0.3s; }
+.service-card:hover .service-price { color: rgba(242,239,232,0.4); }
+
+.cta-section { padding: 8rem 3rem; background: var(--ink); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; overflow: hidden; }
+.cta-section::before { content: 'BB'; font-family: 'Bebas Neue', sans-serif; font-size: 42vw; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.04); position: absolute; right: -6vw; bottom: -12vw; pointer-events: none; line-height: 1; }
+.cta-eyebrow { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+.cta-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+.cta-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 6vw, 6rem); line-height: 0.92; color: var(--paper); }
+.cta-right { display: flex; flex-direction: column; justify-content: center; gap: 1.5rem; position: relative; z-index: 2; }
+.cta-sub { font-size: 0.9rem; color: rgba(242,239,232,0.45); line-height: 1.8; }
+.btn-cta-large { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.1em; background: var(--accent); color: #fff; padding: 1.1rem 2.5rem; text-decoration: none; display: inline-block; align-self: flex-start; transition: opacity 0.2s; }
+.btn-cta-large:hover { opacity: 0.8; }
+
+footer { padding: 2rem 3rem; border-top: 1px solid var(--rule); display: flex; align-items: center; justify-content: space-between; }
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.1em; color: var(--ink); text-decoration: none; }
+.footer-copy { font-size: 0.72rem; color: var(--mid); }
+
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.23,1,0.32,1), transform 0.8s cubic-bezier(0.23,1,0.32,1); }
+.reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="#" class="nav-logo">Brandon Burton</a>
+  <div class="nav-links">
+    <a href="#">Services</a>
+    <a href="#">Work</a>
+    <a href="#">About</a>
+  </div>
+  <a href="#" class="nav-cta">Let's Talk</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-issue">Web Design & Digital Strategy — Oxfordshire</p>
+    <h1 class="hero-headline">
+      Your business<br>deserves a site
+      <em>that works.</em>
+    </h1>
+    <p class="hero-sub">I'm Brandon Burton. I design and build clean, fast websites for small businesses — and stick around to make sure they stay that way.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">Start a Project</a>
+      <a href="#" class="btn-ghost">See my work →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-bb">BB</div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Solo — you work with me directly</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">£0</span>
+        <span class="stat-label">Agency overhead passed to you</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">∞</span>
+        <span class="stat-label">Care for your site after launch</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Web Design</span><span class="dot"> ✦ </span>
+    <span>Digital Strategy</span><span class="dot"> ✦ </span>
+    <span>Ongoing Care</span><span class="dot"> ✦ </span>
+    <span>Small Business</span><span class="dot"> ✦ </span>
+    <span>Oxfordshire</span><span class="dot"> ✦ </span>
+    <span>Fast & Clean</span><span class="dot"> ✦ </span>
+    <span>Web Design</span><span class="dot"> ✦ </span>
+    <span>Digital Strategy</span><span class="dot"> ✦ </span>
+    <span>Ongoing Care</span><span class="dot"> ✦ </span>
+    <span>Small Business</span><span class="dot"> ✦ </span>
+    <span>Oxfordshire</span><span class="dot"> ✦ </span>
+    <span>Fast & Clean</span><span class="dot"> ✦ </span>
+  </div>
+</div>
+
+<section class="services">
+  <div class="section-label">What I Do</div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-num">01</span>
+      <div class="service-name">Web Design & Build</div>
+      <p class="service-desc">A site that looks the part and actually converts. Built clean, fast, and fully yours.</p>
+      <span class="service-price">From £1,200</span>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.1s">
+      <span class="service-num">02</span>
+      <div class="service-name">Digital Setup</div>
+      <p class="service-desc">Google Business, email, analytics, booking tools — everything configured and connected.</p>
+      <span class="service-price">From £350</span>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.2s">
+      <span class="service-num">03</span>
+      <div class="service-name">Ongoing Care</div>
+      <p class="service-desc">Monthly support so your site stays sharp, secure, and up to date.</p>
+      <span class="service-price">From £120/mo</span>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.3s">
+      <span class="service-num">04</span>
+      <div class="service-name">Strategy Session</div>
+      <p class="service-desc">A focused 60-minute call to figure out your best next step online.</p>
+      <span class="service-price">£150 flat</span>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div>
+    <p class="cta-eyebrow">Ready when you are</p>
+    <h2 class="cta-title">Let's build something worth showing off.</h2>
+  </div>
+  <div class="cta-right">
+    <p class="cta-sub">No agencies, no middlemen. Just a straight conversation about what your business needs and how to get there.</p>
+    <a href="#" class="btn-cta-large">Book a Free Call</a>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="footer-logo">Brandon Burton</a>
+  <span class="footer-copy">© 2026 Brandon Burton. Witney, Oxfordshire.</span>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; });
+function animateRing() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+document.querySelectorAll('a, button, .service-card').forEach(el => {
+  el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
+  el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
+});
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+reveals.forEach(r => obs.observe(r));
+</script>
+</body>
+</html>
