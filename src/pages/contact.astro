@@ -6,6 +6,15 @@ import Footer from '../components/Footer.astro';
 
 <BaseLayout title="Contact — Brandon Burton">
   <Nav />
+
+  <!-- Hidden form for Netlify build-time detection (required) -->
+  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="text" name="business" />
+    <textarea name="message"></textarea>
+  </form>
+
   <main>
     <section class="page-hero">
       <div class="container">
@@ -36,8 +45,9 @@ import Footer from '../components/Footer.astro';
         <div class="contact-panel active" id="panel-form">
           <div class="contact-grid">
             <div class="contact-form-wrap">
-              <form name="contact" method="POST" data-netlify="true" action="/thank-you" class="contact-form">
+              <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you" class="contact-form">
                 <input type="hidden" name="form-name" value="contact" />
+                <p class="hidden"><label>Don't fill this out: <input name="bot-field" /></label></p>
                 <div class="field">
                   <label for="name">Your name</label>
                   <input type="text" id="name" name="name" placeholder="Jane Smith" required />
@@ -95,7 +105,6 @@ import Footer from '../components/Footer.astro';
   document.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelectorAll('.option-tab');
     const panels = document.querySelectorAll('.contact-panel');
-
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         const target = tab.dataset.tab;
@@ -109,153 +118,39 @@ import Footer from '../components/Footer.astro';
 </script>
 
 <style>
+  .hidden { display: none; }
   .page-hero {
     padding: calc(68px + 5rem) 0 4rem;
     border-bottom: 1px solid var(--rule);
   }
-  .eyebrow {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--mid);
-    margin-bottom: 1rem;
-  }
-  .page-title {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.75rem;
-    color: var(--ink);
-  }
-  .page-sub {
-    font-size: 1rem;
-    color: var(--mid);
-    line-height: 1.7;
-    max-width: 580px;
-  }
-
-  /* ── OPTION TABS ── */
+  .eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); margin-bottom: 1rem; }
+  .page-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 0.75rem; color: var(--ink); }
+  .page-sub { font-size: 1rem; color: var(--mid); line-height: 1.7; max-width: 580px; }
   .contact-body { padding: var(--section-gap) 0 0; }
-  .contact-options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-bottom: 3rem;
-    max-width: 640px;
-  }
-  .option-tab {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.3rem;
-    padding: 1.25rem 1.5rem;
-    background: var(--surface);
-    border: 1.5px solid var(--rule);
-    border-radius: var(--radius);
-    cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
-    text-align: left;
-  }
-  .option-tab:hover {
-    border-color: var(--mid);
-  }
-  .option-tab.active {
-    border-color: var(--ink);
-    background: var(--surface2);
-  }
+  .contact-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 3rem; max-width: 640px; }
+  .option-tab { display: flex; flex-direction: column; align-items: flex-start; gap: 0.3rem; padding: 1.25rem 1.5rem; background: var(--surface); border: 1.5px solid var(--rule); border-radius: var(--radius); cursor: pointer; transition: border-color 0.2s, background 0.2s; text-align: left; }
+  .option-tab:hover { border-color: var(--mid); }
+  .option-tab.active { border-color: var(--ink); background: var(--surface2); }
   .option-icon { font-size: 1.25rem; margin-bottom: 0.25rem; }
-  .option-label {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--ink);
-  }
-  .option-desc {
-    font-size: 0.78rem;
-    color: var(--mid);
-  }
-
-  /* ── PANELS ── */
+  .option-label { font-size: 0.9rem; font-weight: 600; color: var(--ink); }
+  .option-desc { font-size: 0.78rem; color: var(--mid); }
   .contact-panel { display: none; }
   .contact-panel.active { display: block; }
-
-  /* ── FORM LAYOUT ── */
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: 5rem;
-    align-items: start;
-  }
+  .contact-grid { display: grid; grid-template-columns: 1fr 320px; gap: 5rem; align-items: start; }
   .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
   .field { display: flex; flex-direction: column; gap: 0.4rem; }
-  label {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--ink);
-    letter-spacing: 0.02em;
-  }
-  input, textarea {
-    font-family: var(--font);
-    font-size: 0.9rem;
-    color: var(--ink);
-    background: var(--surface);
-    border: 1.5px solid var(--rule);
-    border-radius: var(--radius-sm);
-    padding: 0.7rem 0.9rem;
-    transition: border-color 0.2s;
-    resize: vertical;
-    outline: none;
-  }
+  label { font-size: 0.8rem; font-weight: 600; color: var(--ink); letter-spacing: 0.02em; }
+  input, textarea { font-family: var(--font); font-size: 0.9rem; color: var(--ink); background: var(--surface); border: 1.5px solid var(--rule); border-radius: var(--radius-sm); padding: 0.7rem 0.9rem; transition: border-color 0.2s; resize: vertical; outline: none; }
   input::placeholder, textarea::placeholder { color: var(--soft); }
   input:focus, textarea:focus { border-color: var(--ink); }
-  .btn-submit {
-    font-size: 0.9rem;
-    font-weight: 600;
-    background: var(--ink);
-    color: var(--bg);
-    padding: 0.8rem 1.6rem;
-    border-radius: 100px;
-    align-self: flex-start;
-    transition: opacity 0.2s;
-    cursor: pointer;
-    font-family: var(--font);
-  }
+  .btn-submit { font-size: 0.9rem; font-weight: 600; background: var(--ink); color: var(--bg); padding: 0.8rem 1.6rem; border-radius: 100px; align-self: flex-start; transition: opacity 0.2s; cursor: pointer; font-family: var(--font); border: none; }
   .btn-submit:hover { opacity: 0.75; }
-
-  /* ── INFO CARDS ── */
-  .info-card {
-    padding: 1.25rem;
-    border: 1px solid var(--rule);
-    border-radius: var(--radius-sm);
-    margin-bottom: 0.75rem;
-  }
-  .info-card h3 {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--soft);
-    margin-bottom: 0.4rem;
-  }
-  .info-card a {
-    font-size: 0.875rem;
-    color: var(--ink);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
+  .info-card { padding: 1.25rem; border: 1px solid var(--rule); border-radius: var(--radius-sm); margin-bottom: 0.75rem; }
+  .info-card h3 { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); margin-bottom: 0.4rem; }
+  .info-card a { font-size: 0.875rem; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
   .info-card p { font-size: 0.875rem; color: var(--mid); line-height: 1.6; }
-
-  /* ── CALENDLY ── */
-  .calendly-wrap {
-    border: 1px solid var(--rule);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
-  .calendly-inline-widget {
-    min-width: 320px;
-    height: 700px;
-  }
-
+  .calendly-wrap { border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+  .calendly-inline-widget { min-width: 320px; height: 700px; }
   @media (max-width: 768px) {
     .contact-options { grid-template-columns: 1fr; max-width: 100%; }
     .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
