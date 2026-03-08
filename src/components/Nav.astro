@@ -154,11 +154,4 @@ const AVAILABLE = true;
   window.addEventListener('scroll', () => {
     nav?.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
-  // Theme icon sync
-  const toggle = document.querySelector('.theme-toggle');
-  const icon = toggle?.querySelector('.toggle-icon');
-  const apply = (t) => { document.documentElement.setAttribute('data-theme', t); if(icon) icon.textContent = t === 'dark' ? '☀️' : '🌙'; };
-  const saved = localStorage.getItem('bb-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-  apply(saved);
-  toggle?.addEventListener('click', () => { const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; localStorage.setItem('bb-theme', next); apply(next); });
 </script>
