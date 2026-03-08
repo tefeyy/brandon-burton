@@ -3,34 +3,113 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
-const services = [
+const oneOff = [
   {
+    num: '01',
     title: 'Web Design & Build',
     desc: 'A professionally designed website built to reflect your brand and convert visitors into customers. Includes design, development, copywriting guidance, and launch.',
-    from: 'From £1,200',
-    range: '£1,200 – £3,500',
-    details: ['Custom design to your brand', 'Mobile-first and fast', 'CMS if needed', 'SEO foundations', 'Launch support'],
+    price: 'From £1,200',
+    range: '£1,200 – £3,500 depending on scope',
+    includes: [
+      'Custom design to your brand',
+      'Mobile-first, fast-loading build',
+      'CMS setup if needed',
+      'SEO foundations included',
+      'Launch support & handover',
+    ],
   },
   {
+    num: '02',
     title: 'Digital Setup',
-    desc: 'Everything you need to show up online: Google Business, email setup, analytics, booking tools, and social profiles — all configured and connected properly.',
-    from: 'From £350',
-    range: '£350 – £700',
-    details: ['Google Business Profile', 'Email setup', 'Google Analytics', 'Booking tool integration', 'Social profile review'],
+    desc: 'Everything you need to show up online — properly. Google Business, email, analytics, booking tools, and social profiles all configured and connected.',
+    price: 'From £350',
+    range: '£350 – £700 depending on scope',
+    includes: [
+      'Google Business Profile setup',
+      'Professional email configuration',
+      'Google Analytics 4',
+      'Booking tool integration',
+      'Social profile audit & setup',
+    ],
   },
   {
-    title: 'Ongoing Care',
-    desc: 'Monthly support so your site stays sharp, secure, and current. Pick the plan that fits — and never think about updates again.',
-    from: 'From £120/mo',
-    range: 'See plans below',
-    details: ['Essentials: £120/mo', 'Standard: £200/mo', 'Growth: £350/mo'],
-  },
-  {
+    num: '03',
     title: 'Strategy Session',
-    desc: "A focused 60-minute conversation to work through your digital presence, identify what's holding you back, and map out your best next step.",
-    from: '£150 flat',
-    range: 'Credited to any project',
-    details: ['60 minutes', 'Recorded and shared', 'Action summary', 'Credit toward any project'],
+    desc: 'A focused 60-minute call to work through your digital presence, identify what\'s holding you back, and map out the clearest next step forward.',
+    price: '£150 flat',
+    range: 'Credited in full toward any project',
+    includes: [
+      '60-minute video call',
+      'Session recorded & shared',
+      'Written action summary',
+      'Full credit toward any project',
+    ],
+  },
+];
+
+const plans = [
+  {
+    name: 'Essentials',
+    price: '£120',
+    per: '/month',
+    desc: 'Peace of mind for businesses that just need things to keep working.',
+    features: [
+      'Monthly site updates',
+      'Security & plugin updates',
+      'Uptime monitoring',
+      'Email support',
+    ],
+    cta: 'Get started',
+    highlight: false,
+  },
+  {
+    name: 'Standard',
+    price: '£200',
+    per: '/month',
+    desc: 'For businesses that want ongoing improvements, not just maintenance.',
+    features: [
+      'Everything in Essentials',
+      'Content updates & additions',
+      'Performance optimisation',
+      'Monthly report',
+      'Priority response',
+    ],
+    cta: 'Most popular',
+    highlight: true,
+  },
+  {
+    name: 'Growth',
+    price: '£350',
+    per: '/month',
+    desc: 'A hands-on partner for businesses actively growing their online presence.',
+    features: [
+      'Everything in Standard',
+      'SEO monitoring & improvements',
+      'Google Business management',
+      'Social content support',
+      'Quarterly strategy review',
+    ],
+    cta: 'Get started',
+    highlight: false,
+  },
+];
+
+const faqs = [
+  {
+    q: 'Do you only work with small businesses?',
+    a: 'Mostly, yes — and intentionally. Small businesses are where I do my best work. You get my full attention, not a junior account manager.',
+  },
+  {
+    q: 'What if I just need a small update or fix?',
+    a: 'If you\'re already on a care plan, small updates are included. If not, get in touch and we\'ll figure out the quickest way to help.',
+  },
+  {
+    q: 'How long does a website build take?',
+    a: 'Typically 3–6 weeks from first call to launch, depending on how quickly feedback comes in. I\'ll give you a clear timeline before we start.',
+  },
+  {
+    q: 'Can I start with a Strategy Session before committing?',
+    a: 'Absolutely — that\'s exactly what it\'s there for. The £150 fee is fully credited toward any project we work on together.',
   },
 ];
 ---
@@ -39,107 +118,247 @@ const services = [
   <Nav />
 
   <main>
+
+    <!-- HERO -->
     <section class="page-hero">
       <div class="container">
-        <p class="eyebrow">Services</p>
-        <h1 class="page-title">What I can do for you</h1>
-        <p class="page-sub">From a brand new website to a monthly retainer — everything a small business needs to look great and grow online.</p>
+        <p class="eyebrow reveal-item">Services</p>
+        <h1 class="page-title reveal-item" style="transition-delay:0.08s">
+          Everything a small business<br/>needs to win online.
+        </h1>
+        <p class="page-sub reveal-item" style="transition-delay:0.16s">
+          From a brand new website to ongoing monthly support — I handle the digital side so you can focus on running your business.
+        </p>
       </div>
     </section>
 
-    <section class="services-list">
+    <!-- ONE-OFF SERVICES -->
+    <section class="services-section">
       <div class="container">
-        {services.map((s, i) => (
-          <div class={`service-row ${i % 2 === 1 ? 'reverse' : ''}`}>
-            <div class="service-info">
-              <h2 class="service-name">{s.title}</h2>
-              <p class="service-desc">{s.desc}</p>
-              <div class="service-pricing">
-                <span class="price-from">{s.from}</span>
-                <span class="price-range">{s.range}</span>
+        <div class="section-label reveal-item">One-off projects</div>
+        <div class="services-stack">
+          {oneOff.map((s) => (
+            <div class="service-card reveal-item">
+              <div class="service-card-left">
+                <span class="service-num">{s.num}</span>
+                <div class="service-main">
+                  <h2 class="service-title">{s.title}</h2>
+                  <p class="service-desc">{s.desc}</p>
+                  <div class="service-price-row">
+                    <span class="price-big">{s.price}</span>
+                    <span class="price-range">{s.range}</span>
+                  </div>
+                  <a href="/contact" class="btn-enquire">Start a conversation →</a>
+                </div>
               </div>
-              <a href="/contact" class="btn-outline">Enquire →</a>
+              <div class="service-card-right">
+                <p class="includes-label">What's included</p>
+                <ul class="includes-list">
+                  {s.includes.map(item => (
+                    <li>
+                      <span class="check">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <div class="service-details">
-              <ul>
-                {s.details.map(d => <li>{d}</li>)}
-              </ul>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
+
+    <!-- ONGOING CARE -->
+    <section class="care-section">
+      <div class="container">
+        <div class="section-label reveal-item">Ongoing care plans</div>
+        <div class="care-intro reveal-item">
+          <h2 class="care-heading">Monthly support, sorted.</h2>
+          <p class="care-sub">Pick a plan and never think about your website again. Updates, security, performance — all handled. Cancel anytime.</p>
+        </div>
+        <div class="plans-grid">
+          {plans.map((plan) => (
+            <div class={`plan-card reveal-item ${plan.highlight ? 'plan-highlight' : ''}`}>
+              {plan.highlight && <span class="popular-badge">Most popular</span>}
+              <div class="plan-top">
+                <h3 class="plan-name">{plan.name}</h3>
+                <div class="plan-price-row">
+                  <span class="plan-price">{plan.price}</span>
+                  <span class="plan-per">{plan.per}</span>
+                </div>
+                <p class="plan-desc">{plan.desc}</p>
+              </div>
+              <ul class="plan-features">
+                {plan.features.map(f => (
+                  <li>
+                    <span class="check">✓</span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="/contact" class={`plan-cta ${plan.highlight ? 'plan-cta-dark' : ''}`}>
+                Get started →
+              </a>
+            </div>
+          ))}
+        </div>
+        <p class="care-note reveal-item">All plans are month-to-month. No contracts. Bundle with a Web Design & Build project for 10% off.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="faq-inner">
+          <div class="faq-left reveal-item">
+            <div class="section-label">Common questions</div>
+            <h2 class="faq-heading">Things people<br/>usually ask.</h2>
+            <a href="/contact" class="btn-ghost-dark">Ask me something else →</a>
+          </div>
+          <div class="faq-right">
+            {faqs.map((faq) => (
+              <div class="faq-item reveal-item">
+                <p class="faq-q">{faq.q}</p>
+                <p class="faq-a">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-inner reveal-item">
+          <div class="cta-text">
+            <h2 class="cta-title">Not sure where to start?</h2>
+            <p class="cta-sub">Book a free 30-minute call. No pitch, no pressure — just an honest conversation about what your business needs.</p>
+          </div>
+          <a href="/contact" class="btn-cta-large">Book a free call</a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <Footer />
 </BaseLayout>
 
 <style>
+  /* ── REVEAL ── */
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1), transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .reveal-item.revealed { opacity: 1; transform: none; }
+
+  /* ── HERO ── */
   .page-hero {
-    padding: calc(68px + 5rem) 0 4rem;
+    padding: calc(68px + 5.5rem) 0 4.5rem;
     border-bottom: 1px solid var(--rule);
   }
   .eyebrow {
     font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--mid);
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
   }
   .page-title {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2.4rem, 5vw, 4rem);
     font-weight: 700;
-    letter-spacing: -0.03em;
-    margin-bottom: 1rem;
+    letter-spacing: -0.035em;
+    line-height: 1.08;
+    margin-bottom: 1.25rem;
     color: var(--ink);
   }
   .page-sub {
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: var(--mid);
-    max-width: 560px;
-    line-height: 1.7;
+    max-width: 540px;
+    line-height: 1.75;
   }
-  .services-list { padding: var(--section-gap) 0 0; }
-  .service-row {
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── ONE-OFF SERVICES ── */
+  .services-section { padding: var(--section-gap) 0 0; }
+  .services-stack { display: flex; flex-direction: column; gap: 1.5px; }
+
+  .service-card {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    padding: 3rem 0;
-    border-bottom: 1px solid var(--rule);
-    align-items: start;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--surface);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
   }
-  .service-row.reverse { direction: rtl; }
-  .service-row.reverse > * { direction: ltr; }
-  .service-name {
-    font-size: 1.4rem;
+  .service-card:hover {
+    box-shadow: 0 8px 40px rgba(0,0,0,0.09);
+    transform: translateY(-2px);
+  }
+  .services-stack .service-card + .service-card { margin-top: 1rem; }
+
+  .service-card-left {
+    padding: 2.75rem 2.5rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    border-right: 1px solid var(--rule);
+  }
+  .service-num {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--soft);
+    padding-top: 0.3rem;
+    flex-shrink: 0;
+    width: 24px;
+  }
+  .service-main { flex: 1; }
+  .service-title {
+    font-size: 1.3rem;
     font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.75rem;
+    letter-spacing: -0.025em;
     color: var(--ink);
+    margin-bottom: 0.75rem;
   }
   .service-desc {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     color: var(--mid);
     line-height: 1.7;
     margin-bottom: 1.5rem;
   }
-  .service-pricing {
+  .service-price-row {
     display: flex;
     align-items: baseline;
     gap: 0.75rem;
     margin-bottom: 1.5rem;
   }
-  .price-from {
-    font-size: 1rem;
+  .price-big {
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--ink);
   }
   .price-range {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: var(--soft);
   }
-  .btn-outline {
+  .btn-enquire {
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--ink);
@@ -149,31 +368,278 @@ const services = [
     display: inline-block;
     transition: background 0.2s, color 0.2s;
   }
-  .btn-outline:hover { background: var(--ink); color: var(--bg); }
-  .service-details ul {
+  .btn-enquire:hover { background: var(--ink); color: var(--bg); }
+
+  .service-card-right {
+    padding: 2.75rem 2.5rem;
+    background: var(--surface2);
+  }
+  .includes-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 1.25rem;
+  }
+  .includes-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .includes-list li {
+    font-size: 0.875rem;
+    color: var(--ink);
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    line-height: 1.5;
+  }
+  .check {
+    color: var(--ink);
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+
+  /* ── ONGOING CARE ── */
+  .care-section { padding: var(--section-gap) 0 0; }
+  .care-intro {
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+  }
+  .care-heading {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+  }
+  .care-sub {
+    font-size: 0.95rem;
+    color: var(--mid);
+    line-height: 1.7;
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .plan-card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  .plan-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
+  }
+  .plan-highlight {
+    background: var(--ink);
+    color: #fff;
+    border-color: transparent;
+  }
+  .popular-badge {
+    position: absolute;
+    top: -1px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.9rem;
+    border-radius: 0 0 8px 8px;
+    border: 1px solid var(--rule);
+    border-top: none;
+    white-space: nowrap;
+  }
+  .plan-top { margin-bottom: 1.75rem; padding-top: 0.5rem; }
+  .plan-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    color: inherit;
+    opacity: 0.7;
+  }
+  .plan-highlight .plan-name { opacity: 0.6; color: #fff; }
+  .plan-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+    margin-bottom: 0.75rem;
+  }
+  .plan-price {
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .plan-highlight .plan-price { color: #fff; }
+  .plan-per {
+    font-size: 0.85rem;
+    color: var(--mid);
+    font-weight: 500;
+  }
+  .plan-highlight .plan-per { color: rgba(255,255,255,0.5); }
+  .plan-desc {
+    font-size: 0.82rem;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+  .plan-highlight .plan-desc { color: rgba(255,255,255,0.55); }
+  .plan-features {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-    padding-top: 0.5rem;
+    gap: 0.65rem;
+    flex: 1;
+    margin-bottom: 2rem;
   }
-  .service-details li {
+  .plan-features li {
+    font-size: 0.85rem;
+    color: var(--mid);
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    line-height: 1.4;
+  }
+  .plan-highlight .plan-features li { color: rgba(255,255,255,0.7); }
+  .plan-highlight .check { opacity: 0.8; color: #fff; }
+  .plan-cta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 0.7rem 1.25rem;
+    border-radius: 100px;
+    border: 1.5px solid var(--rule);
+    color: var(--ink);
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    display: block;
+  }
+  .plan-cta:hover { border-color: var(--ink); background: var(--ink); color: var(--bg); }
+  .plan-cta-dark {
+    background: #fff;
+    color: var(--ink);
+    border-color: transparent;
+  }
+  .plan-cta-dark:hover { background: var(--surface2); color: var(--ink); }
+  .care-note {
+    font-size: 0.8rem;
+    color: var(--soft);
+    text-align: center;
+  }
+
+  /* ── FAQ ── */
+  .faq-section { padding: var(--section-gap) 0 0; }
+  .faq-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .faq-heading {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--ink);
+    margin: 1rem 0 1.5rem;
+  }
+  .btn-ghost-dark {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--mid);
+    transition: color 0.2s;
+  }
+  .btn-ghost-dark:hover { color: var(--ink); }
+  .faq-right {
+    display: flex;
+    flex-direction: column;
+  }
+  .faq-item {
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .faq-item:first-child { border-top: 1px solid var(--rule); }
+  .faq-q {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+  .faq-a {
     font-size: 0.875rem;
     color: var(--mid);
-    padding-left: 1.25rem;
-    position: relative;
+    line-height: 1.7;
   }
-  .service-details li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--soft);
+
+  /* ── CTA ── */
+  .cta-section { padding: var(--section-gap) 0; }
+  .cta-inner {
+    background: var(--ink);
+    color: var(--bg);
+    border-radius: var(--radius);
+    padding: 4rem 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+  .cta-text { max-width: 480px; }
+  .cta-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.6rem;
+    line-height: 1.15;
+  }
+  .cta-sub {
+    font-size: 0.92rem;
+    opacity: 0.5;
+    line-height: 1.65;
+  }
+  .btn-cta-large {
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: var(--bg);
+    color: var(--ink);
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    display: inline-block;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-cta-large:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .plans-grid { grid-template-columns: 1fr; max-width: 480px; }
   }
   @media (max-width: 768px) {
-    .service-row, .service-row.reverse {
-      grid-template-columns: 1fr;
-      direction: ltr;
-      gap: 1.5rem;
-    }
+    .service-card { grid-template-columns: 1fr; }
+    .service-card-left { border-right: none; border-bottom: 1px solid var(--rule); }
+    .faq-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .cta-inner { flex-direction: column; align-items: flex-start; padding: 2.5rem 1.75rem; }
   }
 </style>
+
+<script is:inline>
+  const reveals = document.querySelectorAll('.reveal-item');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('revealed'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  reveals.forEach(el => observer.observe(el));
+</script>
