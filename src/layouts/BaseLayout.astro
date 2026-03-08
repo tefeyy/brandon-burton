@@ -3,34 +3,82 @@ import '../styles/global.css';
 
 const { 
   title = 'Brandon Burton — Web Design & Digital Strategy',
-  description = 'I design and build clean, fast websites for small businesses, and stick around to make sure they stay that way.',
-  ogImage = '/og-image.jpg'
+  description = 'I design and build clean, fast websites for small businesses across Oxfordshire and the Cotswolds, and stick around to make sure they stay that way.',
+  ogImage = '/og-image.jpg',
+  canonical,
 } = Astro.props;
+
+const canonicalURL = canonical || new URL(Astro.url.pathname, 'https://brandonburton.co.uk').href;
+
+// ── GA4 MEASUREMENT ID ─────────────────────────────────────
+// To activate: go to analytics.google.com → create a property
+// for brandonburton.co.uk → copy the G-XXXXXXXXXX ID below
+const GA_ID = ''; // e.g. 'G-XXXXXXXXXX'
+// ──────────────────────────────────────────────────────────
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary SEO -->
+  <title>{title}</title>
   <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Brandon Burton" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content={ogImage} />
-  <meta property="og:type" content="website" />
-  <title>{title}</title>
+  <meta property="og:image" content={`https://brandonburton.co.uk${ogImage}`} />
+  <meta property="og:site_name" content="Brandon Burton" />
+  <meta property="og:locale" content="en_GB" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`https://brandonburton.co.uk${ogImage}`} />
+
+  <!-- Geo targeting -->
+  <meta name="geo.region" content="GB-OXF" />
+  <meta name="geo.placename" content="Oxfordshire" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
-  <!-- Theme must be applied in <head> before any paint to prevent flash -->
+
+  <!-- Theme: must run before paint to prevent flash -->
   <script is:inline>
     const saved = localStorage.getItem('bb-theme') || 'light';
     document.documentElement.setAttribute('data-theme', saved);
   </script>
+
+  <!-- Google Analytics 4 -->
+  {GA_ID && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} is:inline></script>
+      <script is:inline define:vars={{ GA_ID }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', GA_ID, { anonymize_ip: true });
+      </script>
+    </>
+  )}
 </head>
 <body>
   <slot />
   <script is:inline>
-    // Sync toggle icon and wire up click handler after DOM is ready
     document.addEventListener('DOMContentLoaded', () => {
       const toggle = document.querySelector('.theme-toggle');
       const icon = toggle?.querySelector('.toggle-icon');

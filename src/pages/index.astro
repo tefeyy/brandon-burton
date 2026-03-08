@@ -11,7 +11,10 @@ const services = [
 ];
 ---
 
-<BaseLayout>
+<BaseLayout
+  title="Brandon Burton — Web Designer & Digital Consultant | Oxfordshire"
+  description="I design and build clean, fast websites for small businesses across Oxfordshire and the Cotswolds. Professional, affordable, and built to last."
+>
   <Nav />
 
   <main>
@@ -127,6 +130,24 @@ const services = [
 
   <Footer />
 </BaseLayout>
+
+<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Brandon Burton",
+  "description": "Web design and digital strategy for small businesses across Oxfordshire and the Cotswolds.",
+  "url": "https://brandonburton.co.uk",
+  "email": "hello@brandonburton.co.uk",
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Oxfordshire"
+  },
+  "serviceType": ["Web Design", "Digital Strategy", "Website Maintenance"],
+  "priceRange": "££",
+  "sameAs": []
+}
+</script>
 
 <style>
   /* ── REVEAL ANIMATIONS ── */
