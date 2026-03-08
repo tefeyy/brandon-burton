@@ -1,0 +1,475 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Pricing Calculator — Brandon Burton">
+  <Nav />
+  <main>
+    <section class="calc-hero">
+      <div class="container">
+        <p class="eyebrow reveal-item">Pricing Calculator</p>
+        <h1 class="page-title reveal-item" style="transition-delay:0.08s">Get a rough idea<br/>before we talk.</h1>
+        <p class="page-sub reveal-item" style="transition-delay:0.16s">Answer a few quick questions and I'll give you a ballpark figure. No commitment — just clarity.</p>
+      </div>
+    </section>
+
+    <section class="calc-section">
+      <div class="container">
+        <div class="calc-wrap reveal-item">
+
+          <!-- Progress bar -->
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <p class="progress-label"><span id="stepNum">1</span> of <span id="totalSteps">5</span></p>
+
+          <!-- Steps -->
+          <div class="steps-wrap" id="stepsWrap">
+
+            <!-- Step 1 -->
+            <div class="step active" data-step="1">
+              <h2 class="step-q">What do you primarily need?</h2>
+              <div class="options-grid">
+                <button class="opt-btn" data-value="new-website" data-points="1200">
+                  <span class="opt-icon">🌐</span>
+                  <span class="opt-label">A brand new website</span>
+                </button>
+                <button class="opt-btn" data-value="redesign" data-points="1000">
+                  <span class="opt-icon">✏️</span>
+                  <span class="opt-label">Redesign an existing site</span>
+                </button>
+                <button class="opt-btn" data-value="digital-setup" data-points="400">
+                  <span class="opt-icon">⚙️</span>
+                  <span class="opt-label">Digital setup & tools</span>
+                </button>
+                <button class="opt-btn" data-value="maintenance" data-points="120">
+                  <span class="opt-icon">🔧</span>
+                  <span class="opt-label">Ongoing support only</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step" data-step="2">
+              <h2 class="step-q">How many pages will you need?</h2>
+              <div class="options-grid">
+                <button class="opt-btn" data-value="pages-1-3" data-points="0">
+                  <span class="opt-icon">📄</span>
+                  <span class="opt-label">1–3 pages</span>
+                  <span class="opt-hint">Simple presence</span>
+                </button>
+                <button class="opt-btn" data-value="pages-4-6" data-points="300">
+                  <span class="opt-icon">📑</span>
+                  <span class="opt-label">4–6 pages</span>
+                  <span class="opt-hint">Most businesses</span>
+                </button>
+                <button class="opt-btn" data-value="pages-7-plus" data-points="700">
+                  <span class="opt-icon">📚</span>
+                  <span class="opt-label">7+ pages</span>
+                  <span class="opt-hint">Larger site</span>
+                </button>
+                <button class="opt-btn" data-value="pages-unsure" data-points="300">
+                  <span class="opt-icon">🤷</span>
+                  <span class="opt-label">Not sure yet</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step" data-step="3">
+              <h2 class="step-q">Do you need any of these features?</h2>
+              <p class="step-sub">Select all that apply</p>
+              <div class="options-grid multi">
+                <button class="opt-btn multi-btn" data-value="booking" data-points="150">
+                  <span class="opt-icon">📅</span>
+                  <span class="opt-label">Online booking</span>
+                </button>
+                <button class="opt-btn multi-btn" data-value="ecommerce" data-points="600">
+                  <span class="opt-icon">🛒</span>
+                  <span class="opt-label">Online shop</span>
+                </button>
+                <button class="opt-btn multi-btn" data-value="cms" data-points="200">
+                  <span class="opt-icon">✍️</span>
+                  <span class="opt-label">Blog / CMS</span>
+                </button>
+                <button class="opt-btn multi-btn" data-value="none" data-points="0">
+                  <span class="opt-icon">✓</span>
+                  <span class="opt-label">None of the above</span>
+                </button>
+              </div>
+              <button class="btn-next" id="step3Next">Continue →</button>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step" data-step="4">
+              <h2 class="step-q">Do you want ongoing monthly care?</h2>
+              <div class="options-grid">
+                <button class="opt-btn" data-value="care-none" data-points="0">
+                  <span class="opt-icon">❌</span>
+                  <span class="opt-label">No thanks</span>
+                  <span class="opt-hint">One-off only</span>
+                </button>
+                <button class="opt-btn" data-value="care-essentials" data-points="120">
+                  <span class="opt-icon">🛡️</span>
+                  <span class="opt-label">Essentials</span>
+                  <span class="opt-hint">£120/mo</span>
+                </button>
+                <button class="opt-btn" data-value="care-standard" data-points="200">
+                  <span class="opt-icon">⭐</span>
+                  <span class="opt-label">Standard</span>
+                  <span class="opt-hint">£200/mo</span>
+                </button>
+                <button class="opt-btn" data-value="care-growth" data-points="350">
+                  <span class="opt-icon">🚀</span>
+                  <span class="opt-label">Growth</span>
+                  <span class="opt-hint">£350/mo</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="step" data-step="5">
+              <h2 class="step-q">When do you need this done?</h2>
+              <div class="options-grid">
+                <button class="opt-btn" data-value="asap" data-points="200">
+                  <span class="opt-icon">⚡</span>
+                  <span class="opt-label">ASAP</span>
+                  <span class="opt-hint">Within 2 weeks</span>
+                </button>
+                <button class="opt-btn" data-value="1-2months" data-points="0">
+                  <span class="opt-icon">📆</span>
+                  <span class="opt-label">1–2 months</span>
+                  <span class="opt-hint">Normal timeline</span>
+                </button>
+                <button class="opt-btn" data-value="3plus" data-points="0">
+                  <span class="opt-icon">🗓️</span>
+                  <span class="opt-label">3+ months</span>
+                  <span class="opt-hint">No rush</span>
+                </button>
+                <button class="opt-btn" data-value="flexible" data-points="0">
+                  <span class="opt-icon">🤷</span>
+                  <span class="opt-label">Flexible</span>
+                </button>
+              </div>
+            </div>
+
+          </div><!-- /steps-wrap -->
+
+          <!-- Result -->
+          <div class="calc-result" id="calcResult">
+            <div class="result-inner">
+              <p class="result-eyebrow">Your estimated investment</p>
+              <div class="result-price-wrap">
+                <span class="result-prefix">From</span>
+                <span class="result-price" id="resultPrice">£0</span>
+              </div>
+              <p class="result-note" id="resultNote"></p>
+              <div class="result-breakdown" id="resultBreakdown"></div>
+              <div class="result-actions">
+                <a href="/contact" class="btn-book">Book a free call →</a>
+                <button class="btn-restart" id="restartBtn">Start again</button>
+              </div>
+              <p class="result-disclaimer">This is a rough estimate only. Final pricing depends on your specific brief — let's talk to get an accurate quote.</p>
+            </div>
+          </div>
+
+          <!-- Back button -->
+          <button class="btn-back" id="backBtn" style="display:none">← Back</button>
+
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .reveal-item { opacity:0; transform:translateY(24px); transition: opacity 0.65s cubic-bezier(0.25,1,0.5,1), transform 0.65s cubic-bezier(0.25,1,0.5,1); }
+  .reveal-item.revealed { opacity:1; transform:none; }
+
+  .calc-hero { padding: calc(68px + 5rem) 0 3.5rem; border-bottom: 1px solid var(--rule); }
+  .eyebrow { font-size:0.75rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--mid); margin-bottom:1.25rem; }
+  .page-title { font-size: clamp(2.4rem, 5vw, 4rem); font-weight:700; letter-spacing:-0.035em; line-height:1.08; margin-bottom:1.25rem; color:var(--ink); }
+  .page-sub { font-size:1.05rem; color:var(--mid); max-width:520px; line-height:1.75; }
+
+  .calc-section { padding: 4rem 0 6rem; }
+
+  .calc-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 20px;
+    padding: 3rem;
+    position: relative;
+  }
+
+  /* Progress */
+  .progress-bar { height: 3px; background: var(--rule); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--ink); border-radius: 10px; transition: width 0.4s cubic-bezier(0.25,1,0.5,1); width: 20%; }
+  .progress-label { font-size: 0.72rem; color: var(--soft); letter-spacing: 0.06em; margin-bottom: 2.5rem; }
+
+  /* Steps */
+  .step { display: none; animation: fadeUp 0.35s cubic-bezier(0.25,1,0.5,1); }
+  .step.active { display: block; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+  .step-q { font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight:700; letter-spacing:-0.02em; color:var(--ink); margin-bottom:0.5rem; line-height:1.2; }
+  .step-sub { font-size:0.82rem; color:var(--mid); margin-bottom:1.5rem; }
+
+  .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1.5rem; }
+  .opt-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding: 1.2rem 1.25rem;
+    background: var(--bg);
+    border: 1.5px solid var(--rule);
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  }
+  .opt-btn:hover { border-color: var(--mid); transform: translateY(-2px); }
+  .opt-btn.selected { border-color: var(--ink); background: var(--ink); color: #fff; }
+  .opt-icon { font-size: 1.4rem; line-height: 1; }
+  .opt-label { font-size: 0.9rem; font-weight: 600; color: var(--ink); line-height: 1.3; }
+  .opt-btn.selected .opt-label { color: #fff; }
+  .opt-hint { font-size: 0.75rem; color: var(--mid); }
+  .opt-btn.selected .opt-hint { color: rgba(255,255,255,0.6); }
+
+  .btn-next {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: var(--ink);
+    color: var(--bg);
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .btn-next:hover { opacity: 0.8; }
+
+  .btn-back {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 3rem;
+    font-size: 0.8rem;
+    color: var(--mid);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 0;
+  }
+  .btn-back:hover { color: var(--ink); }
+
+  /* Result */
+  .calc-result { display: none; animation: fadeUp 0.45s cubic-bezier(0.25,1,0.5,1); }
+  .calc-result.visible { display: block; }
+  .result-eyebrow { font-size:0.72rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--mid); margin-bottom:1rem; }
+  .result-price-wrap { display:flex; align-items:baseline; gap:0.5rem; margin-bottom:0.75rem; }
+  .result-prefix { font-size:1.1rem; color:var(--mid); }
+  .result-price { font-size: clamp(3rem, 8vw, 5rem); font-weight:800; letter-spacing:-0.04em; color:var(--ink); line-height:1; }
+  .result-note { font-size:0.9rem; color:var(--mid); line-height:1.6; margin-bottom:1.5rem; }
+  .result-breakdown { margin-bottom:2rem; display:flex; flex-direction:column; gap:0.4rem; }
+  .breakdown-line { display:flex; justify-content:space-between; font-size:0.82rem; padding:0.5rem 0; border-bottom:1px solid var(--rule); color:var(--mid); }
+  .breakdown-line:last-child { border-bottom:none; }
+  .breakdown-line strong { color:var(--ink); }
+  .result-actions { display:flex; gap:1rem; align-items:center; flex-wrap:wrap; margin-bottom:1.5rem; }
+  .btn-book { font-size:0.9rem; font-weight:600; background:var(--ink); color:var(--bg); padding:0.75rem 1.75rem; border-radius:100px; transition:opacity 0.2s; }
+  .btn-book:hover { opacity:0.8; }
+  .btn-restart { font-size:0.85rem; color:var(--mid); background:none; border:none; cursor:pointer; transition:color 0.2s; }
+  .btn-restart:hover { color:var(--ink); }
+  .result-disclaimer { font-size:0.75rem; color:var(--soft); line-height:1.6; border-top:1px solid var(--rule); padding-top:1rem; }
+
+  @media(max-width:640px) {
+    .calc-wrap { padding:2rem 1.5rem 3rem; }
+    .options-grid { grid-template-columns:1fr; }
+    .btn-back { left:1.5rem; }
+  }
+</style>
+
+<script is:inline>
+  // ── State ──
+  const answers = {};
+  let currentStep = 1;
+  const TOTAL = 5;
+
+  // ── Elements ──
+  const progressFill = document.getElementById('progressFill');
+  const stepNumEl = document.getElementById('stepNum');
+  const stepsWrap = document.getElementById('stepsWrap');
+  const calcResult = document.getElementById('calcResult');
+  const backBtn = document.getElementById('backBtn');
+  const restartBtn = document.getElementById('restartBtn');
+
+  // ── Update progress ──
+  function updateProgress() {
+    const pct = (currentStep / TOTAL) * 100;
+    progressFill.style.width = pct + '%';
+    stepNumEl.textContent = currentStep;
+  }
+
+  // ── Show step ──
+  function showStep(n) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    const target = document.querySelector(`.step[data-step="${n}"]`);
+    if (target) target.classList.add('active');
+    calcResult.classList.remove('visible');
+    stepsWrap.style.display = 'block';
+    backBtn.style.display = n > 1 ? 'block' : 'none';
+    updateProgress();
+  }
+
+  // ── Next step ──
+  function goNext() {
+    if (currentStep < TOTAL) {
+      currentStep++;
+      showStep(currentStep);
+    } else {
+      showResult();
+    }
+  }
+
+  // ── Single-select buttons ──
+  document.querySelectorAll('.opt-btn:not(.multi-btn)').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const step = btn.closest('.step').dataset.step;
+      // Deselect others in this step
+      btn.closest('.options-grid').querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      answers[step] = { value: btn.dataset.value, points: parseInt(btn.dataset.points) };
+      // Auto-advance after brief pause
+      setTimeout(goNext, 280);
+    });
+  });
+
+  // ── Multi-select (step 3) ──
+  const multiBtns = document.querySelectorAll('.multi-btn');
+  const step3Next = document.getElementById('step3Next');
+
+  multiBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.dataset.value === 'none') {
+        multiBtns.forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+      } else {
+        document.querySelector('.multi-btn[data-value="none"]')?.classList.remove('selected');
+        btn.classList.toggle('selected');
+      }
+      // Update answers
+      const selected = [...document.querySelectorAll('.multi-btn.selected')];
+      const total = selected.reduce((sum, b) => sum + parseInt(b.dataset.points), 0);
+      answers[3] = { value: selected.map(b => b.dataset.value).join(','), points: total };
+    });
+  });
+
+  step3Next?.addEventListener('click', () => {
+    if (!answers[3]) answers[3] = { value: 'none', points: 0 };
+    goNext();
+  });
+
+  // ── Back ──
+  backBtn?.addEventListener('click', () => {
+    if (currentStep > 1) { currentStep--; showStep(currentStep); }
+  });
+
+  // ── Restart ──
+  restartBtn?.addEventListener('click', () => {
+    Object.keys(answers).forEach(k => delete answers[k]);
+    currentStep = 1;
+    document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
+    showStep(1);
+  });
+
+  // ── Show result ──
+  function showResult() {
+    stepsWrap.style.display = 'none';
+    backBtn.style.display = 'none';
+    progressFill.style.width = '100%';
+    stepNumEl.textContent = TOTAL;
+    calcResult.classList.add('visible');
+
+    // Calculate total
+    let oneOff = 0;
+    let monthly = 0;
+    const breakdown = [];
+
+    const mainChoice = answers[1];
+    if (mainChoice) {
+      if (mainChoice.value === 'maintenance') {
+        monthly += mainChoice.points;
+        breakdown.push({ label: 'Ongoing care plan (from)', amount: '£120/mo', monthly: true });
+      } else {
+        oneOff += mainChoice.points;
+        const labels = { 'new-website': 'Web Design & Build', 'redesign': 'Website Redesign', 'digital-setup': 'Digital Setup' };
+        breakdown.push({ label: labels[mainChoice.value] || 'Project', amount: '£' + mainChoice.points.toLocaleString() });
+      }
+    }
+
+    if (answers[2] && mainChoice?.value !== 'maintenance' && mainChoice?.value !== 'digital-setup') {
+      const extra = answers[2].points;
+      if (extra > 0) {
+        oneOff += extra;
+        const labels = { 'pages-4-6': 'Mid-size site (+4-6 pages)', 'pages-7-plus': 'Larger site (7+ pages)', 'pages-unsure': 'Estimated page count' };
+        breakdown.push({ label: labels[answers[2].value] || '', amount: '+£' + extra.toLocaleString() });
+      }
+    }
+
+    if (answers[3] && answers[3].points > 0) {
+      oneOff += answers[3].points;
+      const feats = answers[3].value.split(',').map(v => ({ booking:'Booking system', ecommerce:'Online shop', cms:'Blog/CMS' }[v])).filter(Boolean);
+      breakdown.push({ label: feats.join(' + '), amount: '+£' + answers[3].points.toLocaleString() });
+    }
+
+    const careChoice = answers[4];
+    if (careChoice && careChoice.value !== 'care-none') {
+      monthly += careChoice.points;
+      const labels = { 'care-essentials': 'Care Plan — Essentials', 'care-standard': 'Care Plan — Standard', 'care-growth': 'Care Plan — Growth' };
+      breakdown.push({ label: labels[careChoice.value], amount: '£' + careChoice.points + '/mo', monthly: true });
+    }
+
+    // Rush surcharge
+    if (answers[5]?.value === 'asap' && oneOff > 0) {
+      const rush = Math.round(oneOff * 0.15);
+      oneOff += rush;
+      breakdown.push({ label: 'Rush turnaround', amount: '+£' + rush.toLocaleString() });
+    }
+
+    // Display
+    const priceEl = document.getElementById('resultPrice');
+    const noteEl = document.getElementById('resultNote');
+    const breakdownEl = document.getElementById('resultBreakdown');
+
+    if (mainChoice?.value === 'maintenance' || oneOff === 0) {
+      priceEl.textContent = '£' + monthly + '/mo';
+      noteEl.textContent = 'Monthly retainer, no contracts. Cancel anytime.';
+    } else if (monthly > 0) {
+      priceEl.textContent = '£' + oneOff.toLocaleString();
+      noteEl.textContent = 'One-off project fee, plus £' + monthly + '/month for ongoing care.';
+    } else {
+      priceEl.textContent = '£' + oneOff.toLocaleString();
+      noteEl.textContent = 'Estimated one-off investment. Exact pricing confirmed after a free call.';
+    }
+
+    // Breakdown lines
+    breakdownEl.innerHTML = breakdown.map(b =>
+      `<div class="breakdown-line"><span>${b.label}</span><strong>${b.amount}</strong></div>`
+    ).join('');
+  }
+
+  // ── Init ──
+  updateProgress();
+
+  // Reveal animation
+  const reveals = document.querySelectorAll('.reveal-item');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('revealed'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>

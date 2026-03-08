@@ -203,6 +203,7 @@ const faqs = [
           ))}
         </div>
         <p class="care-note reveal-item">All plans are month-to-month. No contracts. Bundle with a Web Design & Build project for 10% off.</p>
+        <p class="calc-cta-line reveal-item">Not sure which plan suits you? <a href="/calculator" class="calc-link">Try the pricing calculator →</a></p>
       </div>
     </section>
 
@@ -439,7 +440,7 @@ const faqs = [
     transform: translateY(-3px);
   }
   .plan-highlight {
-    background: var(--ink);
+    background: #1a1a1a;
     color: #fff;
     border-color: transparent;
   }
@@ -532,6 +533,9 @@ const faqs = [
     border-color: transparent;
   }
   .plan-cta-dark:hover { background: var(--surface2); color: var(--ink); }
+  .calc-cta-line { font-size:0.82rem; color:var(--mid); text-align:center; margin-top:0.75rem; }
+  .calc-link { color:var(--ink); font-weight:600; text-decoration:underline; text-underline-offset:3px; transition:opacity 0.2s; }
+  .calc-link:hover { opacity:0.65; }
   .care-note {
     font-size: 0.8rem;
     color: var(--soft);
