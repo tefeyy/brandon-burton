@@ -5,8 +5,8 @@ import Footer from '../components/Footer.astro';
 ---
 
 <BaseLayout
-  title="About Brandon Burton — Web Designer, Oxfordshire"
-  description="Brandon Burton is a web designer and digital consultant based in Oxfordshire, helping small businesses look professional and grow online."
+  title="About Brandon Burton — Web Designer, Witney, Oxfordshire"
+  description="I'm Brandon Burton — a web designer based in Witney, Oxfordshire. I build clean, fast websites for small businesses and stay around to keep them running."
 >
   <Nav />
   <main>
@@ -16,15 +16,19 @@ import Footer from '../components/Footer.astro';
         <h1 class="page-title">The person behind the work</h1>
       </div>
     </section>
+
     <section class="about-body">
       <div class="container">
         <div class="about-grid">
+
           <div class="about-content">
-            <p class="about-lead">I'm Brandon Burton — a web designer and digital consultant based in Witney, Oxfordshire.</p>
-            <p>I work with small businesses who want a professional online presence without the agency overhead. That means a clean, fast website that reflects what you actually do — and a reliable person to keep it running.</p>
-            <p>I handle everything myself: design, build, setup, and ongoing support. No handoffs, no confusion about who to call. You work with me directly, start to finish.</p>
-            <p>Most of my clients are local businesses — salons, hospitality, personal brands — who need someone they can trust to just sort it. If that sounds like you, <a href="/contact">let's talk</a>.</p>
+            <p class="about-lead">I'm Brandon — 22, based in Witney, and genuinely into what I do.</p>
+            <p>Web design isn't something I fell into. It's something I've been drawn to since I was in school — the mix of making something look right and making it actually work appealed to me in a way not much else did. I spent years learning properly, picking up real skills from people around me who build for a living, and testing things on my own projects until I was confident enough to do it for others.</p>
+            <p>I started taking on client work and quickly realised most small businesses around here are getting a rough deal. Either they're paying agency rates for something built by a junior, or they're getting a template thrown together by someone they'll never speak to again. I wanted to offer something different — quality work, a direct line to the person doing it, and a relationship that doesn't end at launch.</p>
+            <p>That's what this is. I work with a small number of clients at a time, I'm reachable when something comes up, and I genuinely care whether your website is doing its job.</p>
+            <p>If that sounds like what you need, <a href="/contact">let's talk</a>.</p>
           </div>
+
           <div class="about-sidebar">
             <div class="sidebar-card">
               <h3>Based in</h3>
@@ -38,15 +42,44 @@ import Footer from '../components/Footer.astro';
               <h3>Typically works with</h3>
               <p>Small businesses, salons, hospitality, personal brands</p>
             </div>
+            <div class="sidebar-card">
+              <h3>Approach</h3>
+              <p>Direct, solo, no handoffs — you work with me from start to finish</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="about-values">
+      <div class="container">
+        <div class="values-grid">
+          <div class="value-item" data-reveal>
+            <span class="value-num">01</span>
+            <h3>Quality over volume</h3>
+            <p>I take on a small number of projects at a time so each one gets proper attention.</p>
+          </div>
+          <div class="value-item" data-reveal>
+            <span class="value-num">02</span>
+            <h3>Honest advice</h3>
+            <p>I'll tell you what you actually need — not what makes the invoice bigger.</p>
+          </div>
+          <div class="value-item" data-reveal>
+            <span class="value-num">03</span>
+            <h3>Built to last</h3>
+            <p>Fast, clean, and easy to maintain. No bloated platforms or unnecessary complexity.</p>
           </div>
         </div>
       </div>
     </section>
+
   </main>
   <Footer />
 </BaseLayout>
 
 <style>
+  /* ── Hero ── */
   .page-hero {
     padding: calc(68px + 5rem) 0 4rem;
     border-bottom: 1px solid var(--rule);
@@ -65,14 +98,16 @@ import Footer from '../components/Footer.astro';
     letter-spacing: -0.03em;
     color: var(--ink);
   }
+
+  /* ── Bio section ── */
   .about-body { padding: var(--section-gap) 0 0; }
   .about-grid {
     display: grid;
-    grid-template-columns: 1fr 320px;
+    grid-template-columns: 1fr 300px;
     gap: 5rem;
     align-items: start;
   }
-  .about-content { display: flex; flex-direction: column; gap: 1.25rem; }
+  .about-content { display: flex; flex-direction: column; gap: 1.4rem; }
   .about-lead {
     font-size: 1.2rem;
     font-weight: 500;
@@ -82,18 +117,74 @@ import Footer from '../components/Footer.astro';
   .about-content p {
     font-size: 0.95rem;
     color: var(--mid);
-    line-height: 1.8;
+    line-height: 1.85;
   }
-  .about-content a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .about-content a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* ── Sidebar cards ── */
   .sidebar-card {
     padding: 1.25rem;
     border: 1px solid var(--rule);
     border-radius: var(--radius-sm);
     margin-bottom: 0.75rem;
+    transition: border-color 0.2s;
   }
-  .sidebar-card h3 { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); margin-bottom: 0.4rem; }
-  .sidebar-card p { font-size: 0.875rem; color: var(--mid); }
+  .sidebar-card:hover { border-color: var(--mid); }
+  .sidebar-card h3 {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--soft);
+    margin-bottom: 0.4rem;
+  }
+  .sidebar-card p { font-size: 0.875rem; color: var(--mid); line-height: 1.5; }
+
+  /* ── Values section ── */
+  .about-values {
+    padding: var(--section-gap) 0;
+    margin-top: var(--section-gap);
+    border-top: 1px solid var(--rule);
+  }
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+  .value-item { display: flex; flex-direction: column; gap: 0.75rem; }
+  .value-num {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--soft);
+  }
+  .value-item h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .value-item p { font-size: 0.875rem; color: var(--mid); line-height: 1.7; }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .values-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
   @media (max-width: 768px) {
     .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-sidebar { order: -1; }
   }
 </style>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('[data-reveal]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); observer.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => observer.observe(el));
+</script>
