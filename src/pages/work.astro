@@ -23,6 +23,7 @@ import Footer from '../components/Footer.astro';
           <div class="work-thumb">
             <div class="work-thumb-tfl">
               <span class="tfl-initials">F/L</span>
+              <span class="tfl-brand-sub">The Face Lab</span>
             </div>
           </div>
           <div class="work-meta">
@@ -73,9 +74,10 @@ import Footer from '../components/Footer.astro';
     transition: background 0.2s;
   }
   .work-item:hover { background: var(--surface2); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; border-radius: var(--radius); }
-  .work-thumb { width: 80px; height: 80px; border-radius: var(--radius-sm); overflow: hidden; flex-shrink: 0; }
-  .work-thumb-tfl { width: 100%; height: 100%; background: #2a0d14; display: flex; align-items: center; justify-content: center; }
-  .tfl-initials { font-size: 1.1rem; font-weight: 600; color: rgba(245,237,230,0.85); letter-spacing: 0.05em; font-style: italic; }
+  .work-thumb { width: 100%; aspect-ratio: 16/10; border-radius: var(--radius-sm); overflow: hidden; flex-shrink: 0; }
+  .work-thumb-tfl { width: 100%; height: 100%; background: #1e0a0f; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; }
+  .tfl-initials { font-size: 2.2rem; font-weight: 300; color: rgba(245,237,230,0.9); letter-spacing: 0.1em; font-style: italic; line-height: 1; }
+  .tfl-brand-sub { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,237,230,0.35); }
   .work-title {
     font-size: 1.3rem;
     font-weight: 700;
