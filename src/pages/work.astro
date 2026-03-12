@@ -21,7 +21,9 @@ import Footer from '../components/Footer.astro';
       <div class="container">
         <a href="/work/thefacelab" class="work-item">
           <div class="work-thumb">
-            <img src="/tfl pic.png" alt="TheFaceLab" class="work-thumb-img" />
+            <div class="work-thumb-tfl">
+              <span class="tfl-initials">F/L</span>
+            </div>
           </div>
           <div class="work-meta">
             <h2 class="work-title">TheFaceLab</h2>
@@ -71,8 +73,9 @@ import Footer from '../components/Footer.astro';
     transition: background 0.2s;
   }
   .work-item:hover { background: var(--surface2); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; border-radius: var(--radius); }
-  .work-thumb-img { width: 100%; height: 100%; object-fit: contain; }
-  .work-thumb { width: 80px; height: 80px; border-radius: var(--radius-sm); overflow: hidden; background: #f0ebe4; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .work-thumb { width: 80px; height: 80px; border-radius: var(--radius-sm); overflow: hidden; flex-shrink: 0; }
+  .work-thumb-tfl { width: 100%; height: 100%; background: #2a0d14; display: flex; align-items: center; justify-content: center; }
+  .tfl-initials { font-size: 1.1rem; font-weight: 600; color: rgba(245,237,230,0.85); letter-spacing: 0.05em; font-style: italic; }
   .work-title {
     font-size: 1.3rem;
     font-weight: 700;

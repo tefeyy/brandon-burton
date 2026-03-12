@@ -108,7 +108,11 @@ const services = [
             <a href="/work/thefacelab" class="btn-ghost">Read case study →</a>
           </div>
           <div class="case-visual">
-            <img src="/tfl pic.png" alt="TheFaceLab logo" class="tfl-logo-img" />
+            <div class="tfl-brand-card">
+              <span class="tfl-brand-initials">F/L</span>
+              <span class="tfl-brand-name">The Face Lab Studio</span>
+              <span class="tfl-brand-loc">Oxfordshire</span>
+            </div>
           </div>
         </div>
       </div>
@@ -209,8 +213,11 @@ const services = [
   .case-tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); display: block; margin-bottom: 0.75rem; }
   .case-title { font-size: 2rem; font-weight: 700; letter-spacing: -0.025em; margin-bottom: 1rem; color: var(--ink); }
   .case-desc { font-size: 0.9rem; color: var(--mid); line-height: 1.7; margin-bottom: 1.5rem; }
-  .case-visual { border-radius: var(--radius-sm); aspect-ratio: 4/3; overflow: hidden; background: #f0ebe4; display: flex; align-items: center; justify-content: center; }
-  .tfl-logo-img { width: 75%; height: 75%; object-fit: contain; }
+  .case-visual { border-radius: var(--radius-sm); aspect-ratio: 4/3; overflow: hidden; }
+  .tfl-brand-card { width: 100%; height: 100%; background: #1e0a0f; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; }
+  .tfl-brand-initials { font-size: 3.5rem; font-weight: 300; color: rgba(245,237,230,0.9); letter-spacing: 0.08em; font-style: italic; line-height: 1; }
+  .tfl-brand-name { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,237,230,0.45); }
+  .tfl-brand-loc { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,237,230,0.25); }
 
   /* ── CTA STRIP ── */
   .cta-strip { padding-bottom: var(--section-gap); }
