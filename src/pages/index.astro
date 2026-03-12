@@ -108,7 +108,22 @@ const services = [
             <a href="/work/thefacelab" class="btn-ghost">Read case study →</a>
           </div>
           <div class="case-visual">
-            <div class="case-placeholder">TFL</div>
+            <div class="tfl-card">
+              <div class="tfl-card-inner">
+                <span class="tfl-eyebrow">Beauty · Oxfordshire</span>
+                <div class="tfl-logo">TheFaceLab</div>
+                <div class="tfl-locations">
+                  <span>Witney</span>
+                  <span class="tfl-dot">·</span>
+                  <span>Cotswold</span>
+                </div>
+                <div class="tfl-tags">
+                  <span class="tfl-tag">Web Design</span>
+                  <span class="tfl-tag">Digital Setup</span>
+                  <span class="tfl-tag">Ongoing Care</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -209,8 +224,17 @@ const services = [
   .case-tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); display: block; margin-bottom: 0.75rem; }
   .case-title { font-size: 2rem; font-weight: 700; letter-spacing: -0.025em; margin-bottom: 1rem; color: var(--ink); }
   .case-desc { font-size: 0.9rem; color: var(--mid); line-height: 1.7; margin-bottom: 1.5rem; }
-  .case-visual { background: var(--surface2); border-radius: var(--radius-sm); aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; }
-  .case-placeholder { font-size: 2rem; font-weight: 700; color: var(--rule); letter-spacing: 0.05em; }
+  .case-visual { border-radius: var(--radius-sm); aspect-ratio: 4/3; overflow: hidden; }
+  .tfl-card { width: 100%; height: 100%; background: #1a1a1a; display: flex; align-items: center; justify-content: center; padding: 2rem; position: relative; overflow: hidden; }
+  .tfl-card::before { content: ''; position: absolute; top: -60px; right: -60px; width: 220px; height: 220px; border-radius: 50%; background: rgba(255,255,255,0.03); }
+  .tfl-card::after { content: ''; position: absolute; bottom: -40px; left: -40px; width: 160px; height: 160px; border-radius: 50%; background: rgba(255,255,255,0.03); }
+  .tfl-card-inner { display: flex; flex-direction: column; gap: 1rem; position: relative; z-index: 1; width: 100%; }
+  .tfl-eyebrow { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+  .tfl-logo { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.03em; color: #fff; line-height: 1; }
+  .tfl-locations { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: rgba(255,255,255,0.45); font-weight: 500; }
+  .tfl-dot { opacity: 0.3; }
+  .tfl-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.25rem; }
+  .tfl-tag { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em; color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.12); border-radius: 100px; padding: 0.25rem 0.65rem; }
 
   /* ── CTA STRIP ── */
   .cta-strip { padding-bottom: var(--section-gap); }
