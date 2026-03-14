@@ -30,6 +30,9 @@ import Footer from '../components/Footer.astro';
           </div>
 
           <div class="about-sidebar">
+            <div class="sidebar-photo">
+              <img src="/headshot.jpg" alt="Brandon Burton — Web Designer, Witney, Oxfordshire" class="about-headshot" />
+            </div>
             <div class="sidebar-card">
               <h3>Based in</h3>
               <p>Witney, Oxfordshire</p>
@@ -124,6 +127,23 @@ import Footer from '../components/Footer.astro';
     text-decoration: underline;
     text-underline-offset: 3px;
   }
+
+  /* ── Sidebar photo ── */
+  .sidebar-photo {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--rule);
+  }
+  .about-headshot {
+    width: 100%;
+    display: block;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 0.4s ease;
+  }
+  .sidebar-photo:hover .about-headshot { transform: scale(1.02); }
 
   /* ── Sidebar cards ── */
   .sidebar-card {
